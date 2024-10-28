@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-background/60 backdrop-blur-lg border-2;
+  }
+
+  .hover-card-effect {
+    @apply transition-all duration-200 hover:translate-y-[-2px] hover:shadow-lg;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent;
+  }
+
+  .islamic-pattern {
+    background-color: hsla(var(--background));
+    background-image: url('/subtle-pattern.png');
+    background-size: 300px 300px;
+    opacity: 0.05;
+  }
+
+  .arabic-text {
+    @apply font-arabic text-right;
+  }
+
+  .mirror {
+    transform: scaleX(-1);
+  }
+
+  .shimmer {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent;
+  }
+
+  .page-header {
+    @apply flex items-center justify-between mb-8;
+  }
+
+  .page-title {
+    @apply text-3xl font-bold tracking-tight;
+  }
+
+  .page-description {
+    @apply text-muted-foreground;
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .icon-button {
+    @apply h-9 w-9 rounded-full flex items-center justify-center transition-colors hover:bg-accent hover:text-accent-foreground;
+  }
+}
+
+/* Custom Animations */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Page Transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms ease-in-out;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Loading Skeleton Animation */
+.skeleton {
+  @apply animate-pulse bg-muted rounded;
+}
+
+/* Arabic Text Styles */
+.arabic-title {
+  @apply font-arabic text-2xl font-bold text-right;
+}
+
+.arabic-text {
+  @apply font-arabic text-lg text-right leading-loose;
+}
+
+/* Prayer Times Widget */
+.prayer-time-card {
+  @apply relative overflow-hidden rounded-lg border p-4;
+}
+
+.prayer-time-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent;
+}
+
+/* Quran Reader Styles */
+.quran-text {
+  @apply font-arabic text-3xl leading-loose text-center py-8 px-4;
+}
+
+.ayah-number {
+  @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm mx-2;
+}
+
+/* Tajweed Color Coding */
+.tajweed-ghunnah { @apply text-blue-500; }
+.tajweed-idgham { @apply text-green-500; }
+.tajweed-ikhfa { @apply text-yellow-500; }
+.tajweed-iqlab { @apply text-purple-500; }
+.tajweed-qalqalah { @apply text-red-500; }
+
+/* Achievement Badge */
+.achievement-badge {
+  @apply relative inline-flex items-center justify-center;
+}
+
+.achievement-badge::after {
+  content: '';
+  @apply absolute inset-0 rounded-full animate-ping bg-primary/20;
+}
+
+/* Live Session Indicator */
+.live-indicator {
+  @apply relative flex items-center gap-2 text-green-500;
+}
+
+.live-indicator::before {
+  content: '';
+  @apply w-2 h-2 rounded-full bg-green-500 animate-pulse;
+}
+
+/* Custom Focus Styles */
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+}
